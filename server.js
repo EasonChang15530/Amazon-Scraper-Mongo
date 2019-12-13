@@ -46,30 +46,31 @@ app.get('/', function (req, res) {
 // A GET route for scraping the amazon website
 app.get("/scrape", function (req, res) {
   // First, grab the body of the html with axios
-  axios.get("https://www.amazon.com/s?k=Houseware&ref=nb_sb_noss_2").then(function (response) {
+  axios.get("https://www.amazon.com/gp/bestsellers/?ref_=nav_cs_bestsellers").then(function (response) {
     // Then, load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
     // Now, grab every h2 within an Product tag, and do the following:
-    $(".sg-col-inner").each(function (i, element) {
+    $(".a-section").each(function (i, element) {
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
       result.name = $(this)
-        .children("h2")
         .children("a")
+        .children()
         .text();
       result.link = $(this)
-        .children("h2")
         .children("a")
         .attr("href");
       // result.image = $(this)
-      //   .children("img")
+      //   .children("a")
+      //   .children()
       //   .attr("src");
-      // result.price = $(this)
-      //   .children(".a-price")
-      //   .children(".a-offscreen")
+      // result.stars = $(this)
+      //   .children("a")
+      //   .children("a")
+      //   .children()
       //   .text();
 
       // Create a new Product using the `result` object built from scraping

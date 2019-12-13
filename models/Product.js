@@ -20,8 +20,8 @@ var ProductSchema = new Schema({
   //   type: String,
   //   required: true
   // },
-  // price: {
-  //   type: Number,
+  // stars: {
+  //   type: String,
   //   required: true
   // },
   // `note` is an object that stores a Note id
