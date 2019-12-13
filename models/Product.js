@@ -6,20 +6,18 @@ var Schema = mongoose.Schema;
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
 var ProductSchema = new Schema({
-  // `title` is required and of type String
   name: {
     type: String,
     required: true
   },
-  // `link` is required and of type String
   link: {
     type: String,
     required: true
   },
-  // image: {
-  //   type: String,
-  //   required: true
-  // },
+  image: {
+    type: String,
+    required: true
+  },
   // stars: {
   //   type: String,
   //   required: true

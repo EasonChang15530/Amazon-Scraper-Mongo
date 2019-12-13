@@ -39,8 +39,17 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // Routes
 
 // Main route
+// app.get('/', function (req, res) {
+//   db.Product.findAll({})
+//     .then(function (dbProduct) {
+//       res.render("index", { products: dbProduct })
+//     });
+// });
 app.get('/', function (req, res) {
-  res.render('index');
+  db.Product.find({})
+    .then(function (dbProduct) {
+      res.render("index", { products: dbProduct })
+    });
 });
 
 // A GET route for scraping the amazon website
@@ -51,27 +60,26 @@ app.get("/scrape", function (req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, grab every h2 within an Product tag, and do the following:
-    $(".a-section").each(function (i, element) {
+    $("div .a-section .a-spacing-mini").each(function (i, element) {
       // Save an empty result object
       var result = {};
 
-      // Add the text and href of every link, and save them as properties of the result object
+      // Select the appropriate and use .children () and .parent () to grab information.
       result.name = $(this)
-        .children("a")
-        .children()
-        .text();
+        .children("img")
+        .attr("alt");
       result.link = $(this)
-        .children("a")
+        .parent()
         .attr("href");
-      // result.image = $(this)
-      //   .children("a")
-      //   .children()
-      //   .attr("src");
+      result.image = $(this)
+        .children("img")
+        .attr("src");
       // result.stars = $(this)
+      //   .parent()
+      //   .parent()
+      //   .children("div .a-icon-row .a-spacing-none")
       //   .children("a")
-      //   .children("a")
-      //   .children()
-      //   .text();
+      //   .attr("title");
 
       // Create a new Product using the `result` object built from scraping
       db.Product.create(result)
