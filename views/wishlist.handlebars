@@ -1,0 +1,37 @@
+<div class="jumbotron">
+  <h1 class="display-4">Amazon Scraper</h1>
+  <p class="lead">Amazon.com Best Sellers: More choices for Christmas gifts</p>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Link</th>
+      <th scope="col">Image</th>
+      <th scope="col-2">Comments</th>
+      <th scope="col-2">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    {{#each products}}
+    <tr>
+      <td>{{name}}</td>
+      <td><a href="https://www.amazon.com{{link}}">https://www.amazon.com{{link}}</a></td>
+      <td><img src="{{image}}" /></td>
+      <td></td>
+      <td>
+        <button class="btn btn-info action-comment">Comment
+        </button>
+        <br />
+        <br />
+        <button class="btn btn-secondary action-delete">Delete
+        </button>
+      </td>
+    </tr>
+    {{/each}}
+  
+  </tbody>
+</table>

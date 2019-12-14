@@ -1,23 +1,13 @@
-li {
-  padding: 5px;
-  margin: 5px;
-  background: #faebd7;
+.jumbotron {
+  background-image: url(./img/christmas\ picture.gif);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding-top: 12rem;
+  padding-bottom: 2rem;
 }
 
-.label {
-  font-weight: bold;
+#buttons {
+  text-align: center;
 }
 
-.create-update-form {
-  padding: 5px;
-  margin: 5px;
-  background: aqua;
-}
-
-.form-group {
-  margin-bottom: 5px;
-}
-
-img{
-  float: left;
-}

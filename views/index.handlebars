@@ -1,23 +1,36 @@
-<h3 class="header">Amazon Scraper</h3>
-<div id="buttons">
-  <button class="btn" id="name-sort">Sort By Name</button>
-  <button class="btn" id="price-sort">Sort By Price</button>
+<div class="jumbotron">
+  <h1 class="display-4">Amazon Scraper</h1>
+  <p class="lead">Amazon.com Best Sellers: More choices for Christmas gifts</p>
 </div>
-{{!-- <table id="results">
+
+<div id="buttons">
+  <button class="btn btn-primary btn-lg" id="name-sort">Sort By Name</button>
+  <button class="btn btn-primary btn-lg" id="price-sort">Sort By Stars</button>
+</div>
+
+<table class="table">
   <thead>
     <tr>
-      <th id="name">Name</th>
-      <th id="price">Price</th>
-      <th id="image">Image</th>
-      <th id="link">Link</th>
-      <th id="addwishlist">Add To Wish List</th>
+      <th scope="col">Name</th>
+      <th scope="col">Link</th>
+      <th scope="col">Image</th>
+      <th scope="col">Wish list</th>
     </tr>
   </thead>
+  
   <tbody>
-  </tbody>
-</table> --}}
 
-<ul>
-  {{#each products}}
-  {{/each}}
-</ul>
+    {{#each products}}
+    <tr>
+      <td>{{name}}</td>
+      <td><a href="https://www.amazon.com{{link}}">https://www.amazon.com{{link}}</a></td>
+      <td><img src="{{image}}" /></td>
+      <td>
+        <button style="font-size:30px" class="fa fa-cart-plus add-wishlist" data-name="{{name}}" data-link="{{link}}" data-image="{{image}}">
+        </button>
+      </td>
+    </tr>
+    {{/each}}
+
+  </tbody>
+</table>

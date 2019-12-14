@@ -52,6 +52,13 @@ app.get('/', function (req, res) {
     });
 });
 
+app.get('/wishlist', function (req, res) {
+  db.Wishlist.find({})
+    .then(function (dbWishlist) {
+      res.render("wishlist", { products: dbWishlist })
+    });
+});
+
 // A GET route for scraping the amazon website
 app.get("/scrape", function (req, res) {
   // First, grab the body of the html with axios
@@ -97,6 +104,19 @@ app.get("/scrape", function (req, res) {
     res.send("Scrape Complete");
   });
 });
+
+app.post("/api/wishlist", function (req, res) {
+  var data = req.body;
+  db.Wishlist.create(data)
+    .then(function (dbWishlist) {
+      // View the added result in the console
+      console.log(dbWishlist);
+    })
+    .catch(function (err) {
+      // If an error occurred, log it
+      console.log(err);
+    });
+})
 
 // Route for getting all Products from the db
 app.get("/products", function (req, res) {
