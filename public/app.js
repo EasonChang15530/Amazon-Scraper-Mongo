@@ -18,21 +18,29 @@ $(document).ready(function () {
     });
   })
 
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var recipient = button.data('whatever') // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+    modal.find('.modal-title').text('New message to ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
+
   // When you click the add-wishlist button
   $(".add-wishlist").on("click", function () {
-    // Grab the attr associated with the article from the submit button
+    // Grab the attr associated with the corresponding data from the add-wishlist button
     var thisName = $(this).attr("data-name");
     var thisLink = $(this).attr("data-link");
     var thisImage = $(this).attr("data-image");
 
-    // Run a POST request to change the note, using what's entered in the inputs
+    // POST data
     $.ajax({
       method: "POST",
       url: "/api/wishlist",
       data: {
-        // Value taken from title input
         name: thisName,
-        // Value taken from note textarea
         link: thisLink,
         image: thisImage,
       }
@@ -41,7 +49,6 @@ $(document).ready(function () {
       .then(function (data) {
         // Log the response
         console.log(data);
-        // Empty the notes section
       });
 
   });
