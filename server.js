@@ -39,12 +39,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // Routes
 
 // Main route
-// app.get('/', function (req, res) {
-//   db.Product.findAll({})
-//     .then(function (dbProduct) {
-//       res.render("index", { products: dbProduct })
-//     });
-// });
 app.get('/', function (req, res) {
   db.Product.find({})
     .then(function (dbProduct) {

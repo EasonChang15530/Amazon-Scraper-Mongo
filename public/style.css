@@ -7,7 +7,10 @@
   padding-bottom: 2rem;
 }
 
-#buttons {
+#sort-buttons {
   text-align: center;
 }
 
+.view-button {
+  text-align: right;
+}
