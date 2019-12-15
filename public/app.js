@@ -60,23 +60,28 @@ $(document).ready(function () {
   });
 
   // Click the save-comment button
-  $(".save-comment").on("click", function () {
+  $(".save-comment").on("click", function (event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
     // Grab the attr associated with the corresponding data from the add-wishlist button
     var thisComment = $("textarea").val();
     console.log(thisComment);
 
-    var id = $(this).attr("data-id");
+    var id = $(this).data("id");
 
     // POST data
     $.ajax({
       method: "POST",
       url: "/api/wishlist/" + id,
-      data: {comment: thisComment},
-    })
-      // With that done
-      .then(function (data) {
-        // Log the response
-        console.log(data);
+      data: {
+        comment: thisComment,
+      },
+    }).then(
+      function () {
+        console.log("saved comment", id);
+        // Reload the page to get the updated list
+        location.reload();
       });
   });
 });
