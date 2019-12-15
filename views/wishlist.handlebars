@@ -13,7 +13,7 @@
       <th scope="col">Name</th>
       <th scope="col">Link</th>
       <th scope="col">Image</th>
-      <th scope="col">Comments</th>
+      <th scope="col">Comment</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -25,7 +25,7 @@
       <td>{{name}}</td>
       <td><a href="https://www.amazon.com{{link}}">https://www.amazon.com{{link}}</a></td>
       <td><img src="{{image}}" /></td>
-      <td clsss="show-comment"></td>
+      <td>{{comment}}</td>
       <td>
         {{!-- Bootstrap Modal --}}
         <button class="btn btn-info action-comment" data-toggle="modal" data-target="#exampleModal"

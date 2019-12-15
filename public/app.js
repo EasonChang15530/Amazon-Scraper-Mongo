@@ -5,12 +5,7 @@ $(document).ready(function () {
   })
 
   $("#view-mainpage").on("click", function () {
-    app.get('/', function (req, res) {
-      db.Product.find({})
-        .then(function (dbProduct) {
-          res.render("index", { products: dbProduct })
-        });
-    });
+    window.location.assign("/");
   })
 
   // Click the add-wishlist button
@@ -37,6 +32,22 @@ $(document).ready(function () {
       });
   });
 
+  // Click the action-delete button
+  $(".action-delete").on("click", function () {
+    var id = $(this).data("id");
+
+    // Send the DELETE request.
+    $.ajax("/api/wishlist/" + id, {
+      type: "DELETE"
+    }).then(
+      function () {
+        console.log("deleted product", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
   // Bootstrap Modal
   $('#exampleModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
@@ -51,15 +62,16 @@ $(document).ready(function () {
   // Click the save-comment button
   $(".save-comment").on("click", function () {
     // Grab the attr associated with the corresponding data from the add-wishlist button
-    var commentText = $(this).parent().parent().find(".comment-text").text();
-    var id = $(this).data("id");
-    console.log(commentText);
+    var thisComment = $("textarea").val();
+    console.log(thisComment);
+
+    var id = $(this).attr("data-id");
 
     // POST data
     $.ajax({
       method: "POST",
       url: "/api/wishlist/" + id,
-      data: {comment: commentText}
+      data: {comment: thisComment},
     })
       // With that done
       .then(function (data) {
@@ -67,20 +79,4 @@ $(document).ready(function () {
         console.log(data);
       });
   });
-
-  // Click the action-delete button
-  $(".action-delete").on("click", function () {
-      var id = $(this).data("id");
-  
-      // Send the DELETE request.
-      $.ajax("/api/wishlist/" + id, {
-        type: "DELETE"
-      }).then(
-        function () {
-          console.log("deleted product", id);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
 });

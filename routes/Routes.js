@@ -13,19 +13,6 @@ var db = require("../models");
 // Routes
 
 // Main route
-router.get('/', function (req, res) {
-  db.Product.find({})
-    .then(function (dbProduct) {
-      res.render("index", { products: dbProduct })
-    });
-});
-
-router.get('/wishlist', function (req, res) {
-  db.Wishlist.find({}).populate("note")
-    .then(function (dbWishlist) {
-      res.render("wishlist", { products: dbWishlist })
-    });
-});
 
 // A GET route for scraping the amazon website
 router.get("/scrape", function (req, res) {
@@ -113,6 +100,13 @@ router.delete("/api/wishlist/:id", function (req, res) {
 });
 
 // UPDATE route for deleting Products in wishlist
+router.get('/wishlist', function (req, res) {
+  db.Wishlist.find({}).populate("note")
+    .then(function (dbWishlist) {
+      res.render("wishlist", { products: dbWishlist })
+    });
+});
+
 router.post("/api/wishlist/:id", function (req, res) {
   db.Note.create(req.body)
     .then(function(dbNote) {
