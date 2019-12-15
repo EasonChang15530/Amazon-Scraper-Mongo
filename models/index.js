@@ -2,6 +2,6 @@
 
 module.exports = {
   Product: require("./Product"),
-  Note: require("./Note"),
   Wishlist: require("./Wishlist"),
+  Note: require("./Note"),
 };

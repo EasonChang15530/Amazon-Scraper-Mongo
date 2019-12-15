@@ -25,7 +25,7 @@
       <td>{{name}}</td>
       <td><a href="https://www.amazon.com{{link}}">https://www.amazon.com{{link}}</a></td>
       <td><img src="{{image}}" /></td>
-      <td></td>
+      <td clsss="show-comment"></td>
       <td>
         {{!-- Bootstrap Modal --}}
         <button class="btn btn-info action-comment" data-toggle="modal" data-target="#exampleModal"
@@ -46,13 +46,13 @@
                 <form>
                   <div class="form-group">
                     <label for="message-text" class="col-form-label">Comment:</label>
-                    <textarea class="form-control" id="message-text"></textarea>
+                    <textarea class="form-control" class="comment-text"></textarea>
                   </div>
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Save comment</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal" class="save-comment">Save comment</button>
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@
 
         <br />
         <br />
-        <button class="btn btn-secondary action-delete">Delete
+        <button class="btn btn-secondary action-delete" data-id={{this.id}}>Delete
         </button>
       </td>
     </tr>
