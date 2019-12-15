@@ -1,12 +1,7 @@
 $(document).ready(function () {
 
   $("#view-wishlist").on("click", function () {
-    app.get('/wishlist', function (req, res) {
-      db.Wishlist.find({})
-        .then(function (dbWishlist) {
-          res.render("wishlist", { products: dbWishlist })
-        });
-    });
+    window.location.assign("/wishlist");
   })
 
   $("#view-mainpage").on("click", function () {
@@ -56,14 +51,15 @@ $(document).ready(function () {
   // Click the save-comment button
   $(".save-comment").on("click", function () {
     // Grab the attr associated with the corresponding data from the add-wishlist button
-    var commentText = $(this).text(".comment-text");
+    var commentText = $(this).parent().parent().find(".comment-text").text();
+    var id = $(this).data("id");
     console.log(commentText);
 
     // POST data
     $.ajax({
       method: "POST",
-      position: ".show-comment",
-      data: {commentText}
+      url: "/api/wishlist/" + id,
+      data: {comment: commentText}
     })
       // With that done
       .then(function (data) {
