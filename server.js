@@ -3,11 +3,8 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-// Require axios and cheerio. This makes the scraping possible
-var axios = require("axios");
-var cheerio = require("cheerio");
 
-// Initialize Express
+// Create an instance of the express app.
 var app = express();
 
 var PORT = 3000;
