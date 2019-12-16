@@ -8,6 +8,10 @@ $(document).ready(function () {
     window.location.assign("/");
   })
 
+  $("#name-sort").on("click", function () {
+    window.location.assign("/name");
+  })
+
   // Click the add-wishlist button
   $(".add-wishlist").on("click", function () {
     // Grab the attr associated with the corresponding data from the add-wishlist button
@@ -65,8 +69,9 @@ $(document).ready(function () {
     event.preventDefault();
 
     // Grab the attr associated with the corresponding data from the add-wishlist button
-    var thisComment = $("textarea").val();
-    console.log(thisComment);
+    var thisComment = $(this).parent().parent().find("textarea").val();
+    // console.log(thisComment);
+    // console.log($(this).parent().parent().find("textarea").val());
 
     var id = $(this).data("id");
 

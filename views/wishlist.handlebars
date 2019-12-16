@@ -25,14 +25,16 @@
       <td>{{name}}</td>
       <td><a href="https://www.amazon.com{{link}}">https://www.amazon.com{{link}}</a></td>
       <td><img src="{{image}}" /></td>
-      <td>{{comment}}</td>
+      <td>{{#each note }}
+        {{comment}}
+        {{/each}}</td>
       <td>
         {{!-- Bootstrap Modal --}}
-        <button class="btn btn-info action-comment" data-toggle="modal" data-target="#exampleModal"
+        <button class="btn btn-info action-comment" data-toggle="modal" data-target="#exampleModal{{this.id}}"
           data-whatever="@mdo">Comment
         </button>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="exampleModal{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
           aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">

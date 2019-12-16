@@ -87,6 +87,19 @@ router.get("/products", function (req, res) {
     });
 });
 
+// At the "/name" path, display every products in the products collection, sorted by name
+router.get("/name", function(req, res) {
+  // Query: In this database, go to the products collection, then "find" everything,
+  // but this time, sort it by name (1 means ascending order)
+  db.Product.find({}).sort({ name: 1 })
+    .then(function(found) {
+      res.render("index", { products: found })
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+  });
+
 // A POST route for Products in wishlist from the db
 router.post("/api/wishlist", function (req, res) {
   var data = req.body;
@@ -119,7 +132,7 @@ router.post("/api/wishlist/:id", function (req, res) {
       // If a Note was created successfully, find one Wishlist with an `_id` equal to `req.params.id`. Update the Wishlist to be associated with the new Note
       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
       // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-      return db.Wishlist.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+      return db.Wishlist.findOneAndUpdate({ _id: req.params.id }, {$set: { note: dbNote._id }}, { new: true });
     })
     .then(function(dbWishlist) {
       // If we were able to successfully update an Wishlist, send it back to the client
