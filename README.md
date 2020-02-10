@@ -17,7 +17,11 @@ Heroku Link: https://amazonscraper-bailing.herokuapp.com/
 ## Technologies used
 
 * Node.js
+
 * Express.js
+
 * Handlebars.js
+
 * MongoDB
+
 * cheerio
