@@ -13,3 +13,11 @@ Heroku Link: https://amazonscraper-bailing.herokuapp.com/
 * In the wish list, products can be commented and deleted
 
 ![wishlist](./wishlist.jpg)
+
+## Technologies used
+
+* Node.js
+* Express.js
+* Handlebars.js
+* MongoDB
+* cheerio
