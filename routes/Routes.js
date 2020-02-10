@@ -13,6 +13,7 @@ var db = require("../models");
 // Routes
 
 // Main route
+// Use Handlebars to render the main index.html page with the products in it.
 router.get('/', function (req, res) {
   db.Product.find({})
     .then(function (dbProduct) {
